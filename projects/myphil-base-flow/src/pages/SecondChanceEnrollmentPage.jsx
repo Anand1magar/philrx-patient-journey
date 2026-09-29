@@ -12,7 +12,7 @@ export function SecondChanceEnrollmentPage() {
   // When HIPAA and the coupon are combined, enrolling goes to the consent
   // screen (checkboxes + signature) instead of the terms scroll-box.
   const combined = searchParams.get('combined') === '1';
-  const enrollRoute = combined ? '/second-chance-consent' : '/savings-enrollment-hipaa-authorization-combined';
+  const enrollRoute = combined ? '/second-chance-consent' : '/coupon-enrollment';
   const [summaryOpen, setSummaryOpen] = useState(true);
   const [openSection, setOpenSection] = useState(null);
   return (

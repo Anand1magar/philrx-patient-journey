@@ -36,7 +36,7 @@ export function SavingsHipaaAuthorizationPage() {
         </div>
 
         <div style={{ display: 'flex', flexDirection: 'column', gap: 16 }}>
-          <Button hierarchy="primary" fullWidth onClick={() => navigate('/second-chance-enrolled')}>Agree and enroll</Button>
+          <Button hierarchy="primary" fullWidth onClick={() => navigate('/enrollment-success')}>Agree and enroll</Button>
           <Button hierarchy="secondary" fullWidth onClick={() => setDeclineOpen(true)}>Decline enrollment</Button>
         </div>
 
@@ -52,12 +52,9 @@ export function SavingsHipaaAuthorizationPage() {
         onClose={() => setDeclineOpen(false)}
         onEnroll={() => {
           setDeclineOpen(false);
-          navigate('/second-chance-enrolled');
+          navigate('/enrollment-success');
         }}
-        onDecline={() => {
-          setDeclineOpen(false);
-          navigate('/second-chance-enrollment');
-        }}
+        onDecline={() => setDeclineOpen(false)}
       />
     </div>
   );

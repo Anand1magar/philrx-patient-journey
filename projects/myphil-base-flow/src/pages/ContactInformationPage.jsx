@@ -134,6 +134,14 @@ export function ContactInformationPage() {
 
         <Button hierarchy="primary" fullWidth onClick={() => navigate('/savings-enrollment')}>Next</Button>
 
+        <a
+          href="#"
+          onClick={(e) => { e.preventDefault(); navigate('/coupon-enrollment'); }}
+          style={{ fontSize: 16, lineHeight: '24px', color: 'var(--sky)', fontWeight: 700, textDecoration: 'underline', textAlign: 'center' }}
+        >
+          Prefer to do savings &amp; HIPAA in one step?
+        </a>
+
         <p style={{ fontSize: 16, lineHeight: '24px', color: 'var(--pitch)', margin: 0 }}>
           By clicking next and choosing email and/or text, you agree to receive prescription updates by email and/or text. Text message frequency may vary. Message and data rates may apply. Reply STOP to{' '}
           <a href="https://philhelp.zendesk.com/hc/en-us/p/faq#section2answer7" target="_blank" rel="noreferrer" style={{ color: 'var(--sky)' }}>unsubscribe</a>.

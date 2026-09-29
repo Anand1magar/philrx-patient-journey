@@ -20,7 +20,7 @@ const HIPAA_PARAGRAPHS = [
   'This Authorization will expire 5 years after I sign it, or earlier if required by state law, unless I cancel it sooner.  If I do not sign this Authorization or cancel it, I may no longer qualify for the Services, but it will not impact my treatment, enrollment in my health plan or my insurance benefits. I have read and agree to the Authorization statement above.',
 ];
 
-const NEXT_ROUTE = '/savings-enrollment-hipaa-authorization-combined';
+const NEXT_ROUTE = '/enrollment-success';
 
 export function HipaaAuthorizationPage() {
   const navigate = useNavigate();
