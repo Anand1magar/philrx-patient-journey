@@ -5,6 +5,7 @@ import { TextInput } from '@ds/components/forms/TextInput/TextInput.jsx';
 import { NextSteps } from '@ds/components/domain/NextSteps/NextSteps.jsx';
 import { CaregiverModal } from '@ds/components/domain/CaregiverModal/CaregiverModal.jsx';
 import { MyPhilHeader } from '@ds/components/navigation/MyPhilHeader/MyPhilHeader.jsx';
+import { ProgressBar } from '@ds/components/navigation/ProgressBar/ProgressBar.jsx';
 import { MyPhilFooter } from '@ds/components/navigation/MyPhilFooter/MyPhilFooter.jsx';
 import trustpilotRating from '@ds/assets/images/trustpilot-rating.png';
 import bbbAccredited from '@ds/assets/images/bbb-accredited-business.jpg';
@@ -64,6 +65,7 @@ export function WelcomePage() {
   return (
     <div style={{ width: '100%', background: '#fff', display: 'flex', flexDirection: 'column', alignItems: 'center', fontFamily: 'var(--font-body)' }}>
       <MyPhilHeader />
+      <ProgressBar percent={17} />
 
       <div style={{ width: '100%', boxSizing: 'border-box', display: 'flex', flexDirection: 'column', gap: 28, padding: '20px 16px 60px' }}>
         <h1 style={{ fontSize: 26, fontWeight: 700, lineHeight: '36px', color: 'var(--pitch)', margin: 0 }}>Welcome, {PATIENT_NAME}!</h1>

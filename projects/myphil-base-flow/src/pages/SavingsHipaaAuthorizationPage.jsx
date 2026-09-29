@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { Button } from '@ds/components/forms/Button/Button.jsx';
 import { DeclineEnrollmentModal } from '@ds/components/domain/DeclineEnrollmentModal/DeclineEnrollmentModal.jsx';
 import { MyPhilHeader } from '@ds/components/navigation/MyPhilHeader/MyPhilHeader.jsx';
+import { ProgressBar } from '@ds/components/navigation/ProgressBar/ProgressBar.jsx';
 import { MyPhilFooter } from '@ds/components/navigation/MyPhilFooter/MyPhilFooter.jsx';
 
 const SAVINGS_TERMS = `I understand that if my prescription is not covered by my government sponsored program, I may be eligible for assistance programs from the manufacturer. If I do take such assistance from the manufacturer on my prescription, I understand that I cannot and will not seek reimbursement from my government sponsored program`;
@@ -14,6 +15,7 @@ export function SavingsHipaaAuthorizationPage() {
   return (
     <div style={{ width: '100%', minHeight: '100vh', boxSizing: 'border-box', background: '#fff', display: 'flex', flexDirection: 'column', alignItems: 'center', fontFamily: 'var(--font-body)' }}>
       <MyPhilHeader />
+      <ProgressBar percent={67} />
 
       <div style={{ width: '100%', flex: 1, boxSizing: 'border-box', display: 'flex', flexDirection: 'column', gap: 20, padding: '20px 16px 80px' }}>
         <div style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
