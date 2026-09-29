@@ -22,6 +22,25 @@ const WHY_PHILRX = [
   'Manufacturer offers that may be applied to lower your cost',
 ];
 
+function isMinorFromDob(dobString) {
+  const match = /^(\d{1,2})\/(\d{1,2})\/(\d{4})$/.exec(dobString.trim());
+  if (!match) return false;
+  const month = Number(match[1]);
+  const day = Number(match[2]);
+  const year = Number(match[3]);
+  const dob = new Date(year, month - 1, day);
+  if (Number.isNaN(dob.getTime())) return false;
+
+  const today = new Date();
+  let age = today.getFullYear() - dob.getFullYear();
+  const hadBirthdayThisYear =
+    today.getMonth() > dob.getMonth() ||
+    (today.getMonth() === dob.getMonth() && today.getDate() >= dob.getDate());
+  if (!hadBirthdayThisYear) age -= 1;
+
+  return age < 18;
+}
+
 function HipaaBadge() {
   return (
     <div style={{ position: 'relative', width: 81, height: 40, flexShrink: 0 }}>
@@ -57,7 +76,14 @@ export function WelcomePage() {
           <TextInput label="Date of birth (MM/DD/YYYY)" placeholder="Date of birth (MM/DD/YYYY)" value={dob} onChange={(e) => setDob(e.target.value)} />
         </div>
 
-        <Button hierarchy="primary" fullWidth disabled={!canContinue} onClick={() => setShowCaregiverModal(true)}>Next</Button>
+        <Button
+          hierarchy="primary"
+          fullWidth
+          disabled={!canContinue}
+          onClick={() => (isMinorFromDob(dob) ? setShowCaregiverModal(true) : navigate('/insurance-details'))}
+        >
+          Next
+        </Button>
       </div>
 
       <div style={{ width: '100%', boxSizing: 'border-box', display: 'flex', flexDirection: 'column', gap: 20, padding: '0 16px 20px' }}>
