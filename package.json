@@ -1,0 +1,10 @@
+{
+  "name": "philrx-patient-journey",
+  "private": true,
+  "description": "PHILRx patient journey — Enrollment flow (and, stage by stage, the rest of the PM's canonical journey), built from myphil-base-flow.",
+  "scripts": {
+    "dev": "cd projects/myphil-base-flow && npm install && npm run dev",
+    "build": "cd projects/myphil-base-flow && npm install && npm run build",
+    "preview": "cd projects/myphil-base-flow && npm run preview"
+  }
+}
