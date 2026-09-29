@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
 import { Button } from '@ds/components/forms/Button/Button.jsx';
 import { DeclineEnrollmentModal } from '@ds/components/domain/DeclineEnrollmentModal/DeclineEnrollmentModal.jsx';
 import { MyPhilHeader } from '@ds/components/navigation/MyPhilHeader/MyPhilHeader.jsx';
@@ -8,14 +8,21 @@ import { MyPhilFooter } from '@ds/components/navigation/MyPhilFooter/MyPhilFoote
 
 const SAVINGS_TERMS = `I understand that if my prescription is not covered by my government sponsored program, I may be eligible for assistance programs from the manufacturer. If I do take such assistance from the manufacturer on my prescription, I understand that I cannot and will not seek reimbursement from my government sponsored program`;
 
+// This screen is reused by two PM-table stages that share the same UI:
+// Enrollment's /coupon-enrollment (combined savings + HIPAA, one step) and
+// Payment Approval's /coupon-enrollment-second-chance (a later chance to
+// enroll). Each stage has its own exits — only the Enrollment context gets
+// the Enrollment progress bar and lands on /enrollment-success.
 export function SavingsHipaaAuthorizationPage() {
   const navigate = useNavigate();
+  const location = useLocation();
+  const isEnrollmentContext = location.pathname === '/coupon-enrollment';
   const [declineOpen, setDeclineOpen] = useState(false);
 
   return (
     <div style={{ width: '100%', minHeight: '100vh', boxSizing: 'border-box', background: '#fff', display: 'flex', flexDirection: 'column', alignItems: 'center', fontFamily: 'var(--font-body)' }}>
       <MyPhilHeader />
-      <ProgressBar percent={67} />
+      {isEnrollmentContext && <ProgressBar percent={67} />}
 
       <div style={{ width: '100%', flex: 1, boxSizing: 'border-box', display: 'flex', flexDirection: 'column', gap: 20, padding: '20px 16px 80px' }}>
         <div style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
@@ -38,7 +45,13 @@ export function SavingsHipaaAuthorizationPage() {
         </div>
 
         <div style={{ display: 'flex', flexDirection: 'column', gap: 16 }}>
-          <Button hierarchy="primary" fullWidth onClick={() => navigate('/enrollment-success')}>Agree and enroll</Button>
+          <Button
+            hierarchy="primary"
+            fullWidth
+            onClick={() => navigate(isEnrollmentContext ? '/enrollment-success' : '/second-chance-enrolled')}
+          >
+            Agree and enroll
+          </Button>
           <Button hierarchy="secondary" fullWidth onClick={() => setDeclineOpen(true)}>Decline enrollment</Button>
         </div>
 
@@ -54,9 +67,12 @@ export function SavingsHipaaAuthorizationPage() {
         onClose={() => setDeclineOpen(false)}
         onEnroll={() => {
           setDeclineOpen(false);
-          navigate('/enrollment-success');
+          navigate(isEnrollmentContext ? '/enrollment-success' : '/second-chance-enrolled');
         }}
-        onDecline={() => setDeclineOpen(false)}
+        onDecline={() => {
+          setDeclineOpen(false);
+          if (!isEnrollmentContext) navigate('/second-chance-enrollment');
+        }}
       />
     </div>
   );

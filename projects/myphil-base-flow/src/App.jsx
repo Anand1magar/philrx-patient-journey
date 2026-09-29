@@ -39,6 +39,7 @@ const SCREENS = [
   ['/savings-enrollment', SavingsEnrollmentPage],
   ['/hipaa-authorization', HipaaAuthorizationPage],
   ['/coupon-enrollment', SavingsHipaaAuthorizationPage],
+  ['/coupon-enrollment-second-chance', SavingsHipaaAuthorizationPage],
   ['/enrollment-success', EnrollmentSuccessPage],
   ['/create-password', CreatePasswordPage],
   ['/checkout-sms', CheckoutSmsPage],
