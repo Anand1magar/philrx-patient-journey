@@ -14,8 +14,8 @@ const MIN_WIDTH = 800;
 const COMPUTER_MEDIA = '(pointer: fine)';
 const STORE_KEY = 'deviceframe:mode'; // 'iphone' | 'desktop'
 
-const SCREEN_W = 393;
-const SCREEN_H = 852;
+const SCREEN_W = 375;
+const SCREEN_H = 667;
 const BEZEL = 14;
 const FRAME_W = SCREEN_W + BEZEL * 2;
 const FRAME_H = SCREEN_H + BEZEL * 2;
@@ -89,7 +89,7 @@ function SafariToolbar() {
   );
 }
 
-function IOSStatusBar() {
+export function IOSStatusBar() {
   return (
     <div style={{ height: 46, flexShrink: 0, display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '0 30px 0 32px', fontFamily: 'var(--font-body)', fontWeight: 700, fontSize: 15, color: 'var(--pitch)' }}>
       <span>9:41</span>
