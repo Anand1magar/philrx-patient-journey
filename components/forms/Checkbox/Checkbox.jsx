@@ -1,8 +1,8 @@
 import React from 'react';
-export function Checkbox({ label, checked = false, onChange, disabled = false }) {
+export function Checkbox({ label, checked = false, onChange, disabled = false, iconStyle }) {
   return (
-    <label style={{ display: 'inline-flex', alignItems: 'flex-start', gap: 8, cursor: disabled ? 'not-allowed' : 'pointer', fontFamily: 'var(--font-body)', opacity: disabled ? 0.5 : 1 }}>
-      <span style={{ width: 24, height: 24, boxSizing: 'border-box', borderRadius: 3, border: checked ? '2px solid var(--sky)' : '2px solid var(--pitch)', background: checked ? 'var(--sky)' : 'transparent', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>
+    <label style={{ display: 'inline-flex', alignItems: 'center', gap: 8, cursor: disabled ? 'not-allowed' : 'pointer', fontFamily: 'var(--font-body)', opacity: disabled ? 0.5 : 1 }}>
+      <span style={{ width: 24, height: 24, marginTop: 0, boxSizing: 'border-box', borderRadius: 3, border: checked ? '2px solid var(--sky)' : '2px solid var(--pitch)', background: checked ? 'var(--sky)' : 'transparent', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0, ...iconStyle }}>
         {checked && <svg width="14" height="11" viewBox="0 0 14 11" fill="none"><path d="M1 5.5L5 9.5L13 1.5" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/></svg>}
       </span>
       <input type="checkbox" checked={checked} onChange={onChange} disabled={disabled} style={{ display: 'none' }} />

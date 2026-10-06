@@ -7,7 +7,7 @@ const BEZEL = 12;
 // Unlike DeviceFrame (fixed, viewport-sized, its own iPhone/Desktop toggle),
 // this sits inline inside a panel — same visual language, reusing
 // IOSStatusBar.
-export function PhoneBezel({ hostname = 'philrx.com', width, height, children }) {
+export function PhoneBezel({ hostname = 'philrx.com', width, height, hideStatusBar = false, children }) {
   const notchWidth = Math.round(Math.min(130, Math.max(90, width * 0.28)));
 
   return (
@@ -21,7 +21,7 @@ export function PhoneBezel({ hostname = 'philrx.com', width, height, children })
 
         <div style={{ position: 'absolute', top: 10, left: '50%', transform: 'translateX(-50%)', width: notchWidth, height: 28, background: '#000', borderRadius: 16, zIndex: 5 }} />
 
-        <IOSStatusBar />
+        {!hideStatusBar && <IOSStatusBar />}
 
         <div style={{ flexShrink: 0, background: '#f7f7f8', padding: '6px 14px 10px', display: 'flex', alignItems: 'center', gap: 8 }}>
           <span style={{ flex: 1, height: 34, background: '#e6e6ea', borderRadius: 10, display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 6, fontFamily: 'var(--font-body)', fontSize: 13, color: 'var(--pitch)' }}>

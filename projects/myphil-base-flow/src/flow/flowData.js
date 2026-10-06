@@ -15,6 +15,9 @@ export const FLOW_STAGES = [
         action: 'The order is created, the drug is validated, and the day-0 SMS timer starts.',
         leadsTo: [{ path: '/welcome', label: 'Patient taps the SMS link' }],
         conditions: [],
+        // SmsMessageScreen already renders its own "9:41" status bar — the
+        // bezel's copy would just duplicate it.
+        hideStatusBar: true,
       },
       {
         path: '/welcome',

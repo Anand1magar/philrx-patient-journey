@@ -3,7 +3,7 @@ import React from 'react';
 // Matches the Figma "Radio Buttons" component: a bordered card whose background
 // and border shift on selection, with an optional gray supporting line.
 // Pass `borderless` for a plain radio row (no card chrome).
-export function Radio({ label, supportingText, checked = false, onChange, disabled = false, name, borderless = false }) {
+export function Radio({ label, supportingText, checked = false, onChange, disabled = false, name, borderless = false, style }) {
   return (
     <label
       style={{
@@ -19,6 +19,7 @@ export function Radio({ label, supportingText, checked = false, onChange, disabl
         cursor: disabled ? 'not-allowed' : 'pointer',
         fontFamily: 'var(--font-body)',
         opacity: disabled ? 0.5 : 1,
+        ...style,
       }}
     >
       <span style={{ width: 24, height: 24, borderRadius: '50%', boxSizing: 'border-box', border: `2px solid ${checked ? 'var(--sky)' : 'var(--gunmetal)'}`, display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>

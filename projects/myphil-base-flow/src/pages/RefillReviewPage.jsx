@@ -66,6 +66,7 @@ export function RefillReviewPage() {
     <Checkbox
       checked={autoRefill}
       onChange={() => setAutoRefill((v) => !v)}
+      iconStyle={{ marginTop: 5 }}
       label={
         <span style={{ display: 'flex', flexDirection: 'column', gap: 4 }}>
           <span>Ship refills automatically if the price stays the same.</span>
@@ -96,7 +97,7 @@ export function RefillReviewPage() {
         <div style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
           <SectionLabel>Shipping</SectionLabel>
           <OutlinedBox>
-            <div style={{ fontSize: 16, lineHeight: '24px', color: 'var(--pitch)' }}>
+            <div style={{ display: 'flex', flexDirection: 'column', gap: 18, fontSize: 16, lineHeight: '24px', color: 'var(--pitch)' }}>
               <p style={{ margin: 0 }}>{SHIPPING_ADDRESS.line1}</p>
               <p style={{ margin: 0 }}>{SHIPPING_ADDRESS.line2}</p>
             </div>
@@ -113,7 +114,7 @@ export function RefillReviewPage() {
 
           {stage === PAYMENT_STAGE.SAVED && (
             <>
-              <div style={{ width: '100%', boxSizing: 'border-box', border: '1px solid var(--fade)', borderRadius: 4, padding: 12, display: 'flex', alignItems: 'center', gap: 8 }}>
+              <div style={{ width: '100%', boxSizing: 'border-box', border: '1px solid var(--fade)', borderRadius: 4, padding: '21px 16px', display: 'flex', alignItems: 'center', gap: 8 }}>
                 <span style={{ width: 20, height: 20, borderRadius: '50%', boxSizing: 'border-box', border: '2px solid var(--sky)', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>
                   <span style={{ width: 10, height: 10, borderRadius: '50%', background: 'var(--sky)' }} />
                 </span>
@@ -133,7 +134,7 @@ export function RefillReviewPage() {
 
           {stage === PAYMENT_STAGE.CARD_FORM && (
             <>
-              <div style={{ width: '100%', boxSizing: 'border-box', border: '1px solid var(--fade)', borderRadius: 4, padding: 12, display: 'flex', flexDirection: 'column', gap: 16 }}>
+              <div style={{ width: '100%', boxSizing: 'border-box', border: '1px solid var(--fade)', borderRadius: 4, padding: '21px 16px', display: 'flex', flexDirection: 'column', gap: 16 }}>
                 <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
                   <span style={{ width: 20, height: 20, borderRadius: '50%', boxSizing: 'border-box', border: '2px solid var(--sky)', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>
                     <span style={{ width: 10, height: 10, borderRadius: '50%', background: 'var(--sky)' }} />
@@ -179,9 +180,10 @@ export function RefillReviewPage() {
 
           {stage === PAYMENT_STAGE.PICKER && (
             <div style={{ display: 'flex', flexDirection: 'column', gap: 12, width: '100%' }}>
-              <div style={{ width: '100%', boxSizing: 'border-box', border: '1px solid var(--fade)', borderRadius: 4, padding: '4px 12px' }}>
+              <div style={{ width: '100%', boxSizing: 'border-box', border: '1px solid var(--fade)', borderRadius: 4, padding: '21px 16px' }}>
                 <Radio
                   borderless
+                  style={{ padding: 0 }}
                   name="refill-payment-method"
                   checked={paymentMethod === 'card'}
                   onChange={() => setPaymentMethod('card')}
@@ -193,9 +195,10 @@ export function RefillReviewPage() {
                   }
                 />
               </div>
-              <div style={{ width: '100%', boxSizing: 'border-box', border: '1px solid var(--fade)', borderRadius: 4, padding: '4px 12px' }}>
+              <div style={{ width: '100%', boxSizing: 'border-box', border: '1px solid var(--fade)', borderRadius: 4, padding: '21px 16px' }}>
                 <Radio
                   borderless
+                  style={{ padding: 0 }}
                   name="refill-payment-method"
                   checked={paymentMethod === 'apple-pay'}
                   onChange={() => setPaymentMethod('apple-pay')}
@@ -207,9 +210,10 @@ export function RefillReviewPage() {
                   }
                 />
               </div>
-              <div style={{ width: '100%', boxSizing: 'border-box', border: '1px solid var(--fade)', borderRadius: 4, padding: '4px 12px' }}>
+              <div style={{ width: '100%', boxSizing: 'border-box', border: '1px solid var(--fade)', borderRadius: 4, padding: '21px 16px' }}>
                 <Radio
                   borderless
+                  style={{ padding: 0 }}
                   name="refill-payment-method"
                   checked={paymentMethod === 'paypal'}
                   onChange={() => setPaymentMethod('paypal')}

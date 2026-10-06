@@ -43,7 +43,7 @@ export function FlowPreviewPane({ path, onLocationChange, deviceWidth, deviceHei
 
   if (screen.external) {
     return (
-      <PhoneBezel width={deviceWidth} height={deviceHeight}>
+      <PhoneBezel width={deviceWidth} height={deviceHeight} hideStatusBar={screen.hideStatusBar}>
         <ExternalPreview origin={screen.external.origin} hash={screen.hash} />
       </PhoneBezel>
     );
@@ -57,7 +57,7 @@ export function FlowPreviewPane({ path, onLocationChange, deviceWidth, deviceHei
   if (!Page) return null;
 
   return (
-    <PhoneBezel width={deviceWidth} height={deviceHeight}>
+    <PhoneBezel width={deviceWidth} height={deviceHeight} hideStatusBar={screen.hideStatusBar}>
       <MemoryRouter initialEntries={[path]} key={path}>
         <LocationReporter onLocationChange={onLocationChange} />
         <Routes>
