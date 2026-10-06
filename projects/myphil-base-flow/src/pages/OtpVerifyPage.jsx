@@ -5,18 +5,16 @@ import { PhilRxAppHeader } from '../components/PhilRxAppHeader.jsx';
 import { MyPhilFooter } from '@ds/components/navigation/MyPhilFooter/MyPhilFooter.jsx';
 
 const CODE_LENGTH = 6;
-const BORDER_COLOR = { default: 'var(--pitch)', focused: 'var(--sky)', error: 'var(--ruby)', filled: 'var(--pitch)' };
+const BORDER_COLOR = { default: 'var(--pitch)', focused: 'var(--sky)', filled: 'var(--pitch)' };
 
 export function OtpVerifyPage() {
   const navigate = useNavigate();
   const [digits, setDigits] = useState(Array(CODE_LENGTH).fill(''));
   const [focusedIndex, setFocusedIndex] = useState(null);
-  const [hasError, setHasError] = useState(false);
   const inputRefs = useRef([]);
 
   const handleChange = (index, rawValue) => {
     const value = rawValue.replace(/\D/g, '').slice(-1);
-    setHasError(false);
     setDigits((prev) => {
       const next = [...prev];
       next[index] = value;
@@ -34,11 +32,7 @@ export function OtpVerifyPage() {
   };
 
   const handleConfirm = () => {
-    const incomplete = digits.some((d) => d === '');
-    setHasError(incomplete);
-    if (!incomplete) {
-      navigate('/my-prescriptions');
-    }
+    navigate('/payment-scenarios');
   };
 
   return (
@@ -59,7 +53,7 @@ export function OtpVerifyPage() {
         <div style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
           <div style={{ display: 'flex', gap: 8 }}>
             {digits.map((digit, index) => {
-              const boxState = hasError ? 'error' : digit ? 'filled' : 'default';
+              const boxState = digit ? 'filled' : 'default';
               const effState = focusedIndex === index ? 'focused' : boxState;
               return (
                 <input
@@ -90,7 +84,6 @@ export function OtpVerifyPage() {
               );
             })}
           </div>
-          {hasError && <span style={{ fontSize: 14, lineHeight: '20px', color: 'var(--ruby)' }}>Incorrect code</span>}
         </div>
 
         <div style={{ display: 'flex', flexDirection: 'column', gap: 16 }}>

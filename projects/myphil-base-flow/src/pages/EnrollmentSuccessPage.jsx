@@ -23,7 +23,7 @@ export function EnrollmentSuccessPage() {
             <div style={{ display: 'flex', gap: 10, alignItems: 'flex-start' }}>
               <img src={shieldHeartIcon} alt="" width={30} height={30} style={{ flexShrink: 0 }} />
               <p style={{ fontSize: 16, lineHeight: '24px', color: 'var(--pitch)', margin: 0 }}>
-                We&rsquo;ll check with your insurance to confirm your cost and let you know when it&rsquo;s ready.
+                We&rsquo;ll check with your insurance to find your cost and let you know when it&rsquo;s ready.
               </p>
             </div>
           </div>
@@ -33,9 +33,12 @@ export function EnrollmentSuccessPage() {
 
         <div style={{ display: 'flex', flexDirection: 'column', gap: 16 }}>
           <p style={{ fontSize: 16, lineHeight: '24px', color: 'var(--pitch)', margin: 0 }}>
-            Set up a password for faster access (optional &mdash; you can always log in with a one-time code instead).
+            Optional: Set up a password for faster access. Otherwise, no action needed &mdash; we&rsquo;ll email you a login code each time.
           </p>
-          <Button hierarchy="link" onClick={() => navigate('/create-password')}>Set up password</Button>
+          <Button hierarchy="secondary" fullWidth onClick={() => navigate('/create-password')}>Set up password</Button>
+          <p style={{ fontSize: 14, lineHeight: '20px', color: '#71717A', margin: 0, textAlign: 'center' }}>
+            You can also just log in with a one-time code we&rsquo;ll email you each time.
+          </p>
         </div>
       </div>
 

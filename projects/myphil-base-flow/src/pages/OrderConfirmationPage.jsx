@@ -36,7 +36,7 @@ export function OrderConfirmationPage() {
           <p style={{ fontSize: 16, lineHeight: '24px', color: 'var(--pitch)', margin: 0 }}>
             Go to your account for updates.
           </p>
-          <Button hierarchy="primary" fullWidth onClick={() => navigate('/my-prescriptions')}>Go to my account</Button>
+          <Button hierarchy="primary" fullWidth onClick={() => navigate('/sms')}>Go to my account</Button>
         </div>
       </div>
 

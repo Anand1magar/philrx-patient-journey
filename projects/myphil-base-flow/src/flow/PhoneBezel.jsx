@@ -8,18 +8,20 @@ const BEZEL = 12;
 // this sits inline inside a panel — same visual language, reusing
 // IOSStatusBar.
 export function PhoneBezel({ hostname = 'philrx.com', width, height, hideStatusBar = false, children }) {
-  const notchWidth = Math.round(Math.min(130, Math.max(90, width * 0.28)));
+  // iPhone 11's notch: fixed width/height regardless of frame size, unlike
+  // an SE-style camera dot — Apple kept this exact notch through the 11/XR line.
+  const notchWidth = Math.round(width * 0.35);
 
   return (
-    <div style={{ width: width + BEZEL * 2, background: '#101012', borderRadius: 52, padding: BEZEL, boxSizing: 'border-box', boxShadow: '0 24px 48px -16px rgba(16,18,22,0.45)' }}>
+    <div style={{ position: 'relative', width: width + BEZEL * 2, background: '#101012', borderRadius: 52, padding: BEZEL, boxSizing: 'border-box', boxShadow: '0 24px 48px -16px rgba(16,18,22,0.45)' }}>
       <div className="flow-phone-screen" style={{ position: 'relative', width, height, borderRadius: 40, overflow: 'hidden', background: '#fff', display: 'flex', flexDirection: 'column' }}>
-        {/* Pages sized with viewport units (minHeight: '100vh', etc.) target the
-            browser window, not this box — pin them to the frame instead, the
-            same fix DeviceFrame applies, otherwise they overflow the frame and
-            create a second, nested scroll region. */}
-        <style>{'.flow-phone-screen [style*="100vh"]{min-height:100% !important}.flow-phone-screen [style*="100vw"]{max-width:100% !important}.flow-phone-screen img,.flow-phone-screen svg{max-width:100%}.flow-phone-content::-webkit-scrollbar{display:none}'}</style>
-
-        <div style={{ position: 'absolute', top: 10, left: '50%', transform: 'translateX(-50%)', width: notchWidth, height: 28, background: '#000', borderRadius: 16, zIndex: 5 }} />
+        <div style={{ position: 'absolute', top: 0, left: '50%', transform: 'translateX(-50%)', width: notchWidth, height: 26, background: '#000', borderRadius: '0 0 18px 18px', zIndex: 5 }} />
+        {/* Pages sized with viewport units (minHeight: '100vh', etc.) or
+            position:fixed (full-screen modals) target the browser window,
+            not this box — pin them to the frame instead, the same fix
+            DeviceFrame applies, otherwise they overflow the frame (or escape
+            it entirely) and cover the whole browser instead of the mockup. */}
+        <style>{'.flow-phone-screen [style*="100vh"]{min-height:100% !important}.flow-phone-screen [style*="100vw"]{max-width:100% !important}.flow-phone-screen [style*="position: fixed"]{position:absolute !important}.flow-phone-screen img,.flow-phone-screen svg{max-width:100%}.flow-phone-content::-webkit-scrollbar{display:none}'}</style>
 
         {!hideStatusBar && <IOSStatusBar />}
 

@@ -51,10 +51,10 @@ export const FLOW_STAGES = [
         action: 'Patient photographs or uploads their insurance card as an alternative to the auto-matched card on Insurance details.',
         leadsTo: [
           { path: '/insurance-card-review', label: 'Photo taken' },
-          { path: '/contact-information', label: '"I don’t have prescription insurance"' },
+          { path: '/contact-information', label: '"Having trouble uploading, or don’t have the card with you? Click here."' },
         ],
         conditions: [
-          { summary: 'No insurance', detail: 'Skip link bypasses insurance entirely and goes straight to Contact information.' },
+          { summary: 'No insurance / can’t upload', detail: 'The "Click here" fallback bypasses insurance entirely and goes straight to Contact information.' },
         ],
       },
       {
