@@ -13,4 +13,9 @@ export default defineConfig({
       '@ds': repoRoot,
     },
   },
+  server: {
+    // Opens straight to /flow, the entry point for reviewing the patient
+    // journey — root "/" redirects there client-side (see src/App.jsx).
+    open: true,
+  },
 });

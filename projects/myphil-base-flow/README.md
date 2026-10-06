@@ -13,7 +13,10 @@ Source: Figma file "1Q26 - 2Q26 MyPhil Branded Template"
     npm install
     npm run dev
 
-Open the printed localhost URL. Routes:
+Opens the browser automatically at `/flow`, the screen navigator (live
+iPhone SE-sized preview with an Overview info panel alongside it). The root
+path (`/`) redirects there too — it's the canonical entry point for
+reviewing the patient journey, not any single screen. Routes:
 
 - `/sms` — recreation of the PhilRx text message that starts this flow
   (tap the link to continue)

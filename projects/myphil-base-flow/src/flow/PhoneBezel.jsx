@@ -3,10 +3,10 @@ import { IOSStatusBar } from '@ds/components/navigation/DeviceFrame/DeviceFrame.
 
 const BEZEL = 12;
 
-// A non-fullscreen phone bezel for the /flow navigator's preview pane, sized
-// to whatever DEVICE_SIZES entry is selected. Unlike DeviceFrame (fixed,
-// viewport-sized, its own iPhone/Desktop toggle), this sits inline inside a
-// panel — same visual language, reusing IOSStatusBar.
+// A non-fullscreen phone bezel for the /flow navigator's preview pane.
+// Unlike DeviceFrame (fixed, viewport-sized, its own iPhone/Desktop toggle),
+// this sits inline inside a panel — same visual language, reusing
+// IOSStatusBar.
 export function PhoneBezel({ hostname = 'philrx.com', width, height, children }) {
   const notchWidth = Math.round(Math.min(130, Math.max(90, width * 0.28)));
 
