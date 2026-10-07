@@ -29,6 +29,7 @@ import { PaApprovedSmsPage } from './pages/PaApprovedSmsPage.jsx';
 import { PaDeniedSmsPage } from './pages/PaDeniedSmsPage.jsx';
 import { ShippingSmsPage } from './pages/ShippingSmsPage.jsx';
 import { DeliverySmsPage } from './pages/DeliverySmsPage.jsx';
+import { DeliverySignatureSmsPage } from './pages/DeliverySignatureSmsPage.jsx';
 import { RefillSmsPage } from './pages/RefillSmsPage.jsx';
 import { DeliveryConfirmationPage } from './pages/DeliveryConfirmationPage.jsx';
 
@@ -88,9 +89,10 @@ export const PAGES = [
   ['/shipping-sms', ShippingSmsPage],
   ['/shipped', prescriptionsAt('shipped')],
   ['/delivery-sms', DeliverySmsPage],
+  ['/delivered', prescriptionsAt('delivered')],
+  ['/delivery-signature-sms', DeliverySignatureSmsPage],
   ['/delivery-confirmation-required', prescriptionsAt('delivery-confirmation-required')],
   ['/delivery-confirmation', DeliveryConfirmationPage],
-  ['/delivered', prescriptionsAt('delivered')],
 
   // Refills
   ['/refill-sms', RefillSmsPage],

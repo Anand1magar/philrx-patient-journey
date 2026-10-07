@@ -15,7 +15,7 @@ export function DeliverySmsPage() {
       </p>
       <p style={{ ...body, margin: '8px 0 0' }}>
         It&rsquo;s here! Your prescription was delivered on [delivered date]. Questions? We&rsquo;re one click away{' '}
-        <a href="#" onClick={(e) => { e.preventDefault(); navigate('/delivery-confirmation-required'); }} style={{ color: '#2363c3', textDecoration: 'underline' }}>
+        <a href="#" onClick={(e) => { e.preventDefault(); navigate('/delivered'); }} style={{ color: '#2363c3', textDecoration: 'underline' }}>
           here
         </a>.
       </p>

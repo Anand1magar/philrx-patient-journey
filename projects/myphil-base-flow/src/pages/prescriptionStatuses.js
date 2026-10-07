@@ -120,11 +120,14 @@ export const PRESCRIPTION_STATUSES = {
     faqSeeMore: true,
   },
 
+  // Where the plain "it's here" SMS lands. When the insurer wants signed
+  // proof of receipt a second SMS follows, which is why this continues to
+  // the signature request rather than straight to the refill.
   delivered: {
     headline: 'Delivered on [day, mm/dd]',
     paragraphs: ['Your next refill is scheduled to start processing on [mm/dd].'],
     notes: [],
-    actions: [{ label: 'Manage your prescription', hierarchy: 'primary', to: '/refill-sms' }],
+    actions: [{ label: 'Manage your prescription', hierarchy: 'primary', to: '/delivery-signature-sms' }],
     faq: FAQ_SHORT,
     faqSeeMore: true,
   },

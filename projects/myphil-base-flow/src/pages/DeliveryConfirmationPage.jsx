@@ -85,7 +85,7 @@ export function DeliveryConfirmationPage() {
             </div>
 
             <div style={{ display: 'flex', flexWrap: 'wrap', alignItems: 'center', justifyContent: 'space-between', gap: 12 }}>
-              <Button hierarchy="primary" onClick={() => navigate('/delivered')}>Confirm delivery</Button>
+              <Button hierarchy="primary" onClick={() => navigate('/refill-sms')}>Confirm delivery</Button>
               <p style={{ fontSize: 14, color: 'var(--pitch)', margin: 0 }}>
                 Missing delivery?
                 <br />
