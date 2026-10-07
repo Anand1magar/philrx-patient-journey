@@ -1,3 +1,4 @@
+import { createElement } from 'react';
 import { SmsPage } from './pages/SmsPage.jsx';
 import { WelcomePage } from './pages/WelcomePage.jsx';
 import { InsuranceDetailsPage } from './pages/InsuranceDetailsPage.jsx';
@@ -23,6 +24,26 @@ import { DualPricingPage } from './pages/DualPricingPage.jsx';
 import { RefillReviewPage } from './pages/RefillReviewPage.jsx';
 import { PaymentScenariosPage } from './pages/PaymentScenariosPage.jsx';
 import { OrderConfirmationPage } from './pages/OrderConfirmationPage.jsx';
+import { PaSmsPage } from './pages/PaSmsPage.jsx';
+import { PaApprovedSmsPage } from './pages/PaApprovedSmsPage.jsx';
+import { PaDeniedSmsPage } from './pages/PaDeniedSmsPage.jsx';
+import { ShippingSmsPage } from './pages/ShippingSmsPage.jsx';
+import { DeliverySmsPage } from './pages/DeliverySmsPage.jsx';
+import { RefillSmsPage } from './pages/RefillSmsPage.jsx';
+import { DeliveryConfirmationPage } from './pages/DeliveryConfirmationPage.jsx';
+
+// "My prescriptions" is one component rendered at seven paths, one per order
+// status — see prescriptionStatuses.js. Binding the status here (rather than
+// reading a query param) keeps every status a distinct path, which is what
+// the /flow navigator keys its screen list and URL sync off.
+//
+// createElement rather than JSX: this file is .js, and @vitejs/plugin-react
+// only transforms .jsx.
+const prescriptionsAt = (status) => {
+  const Screen = () => createElement(MyPrescriptionsPage, { status });
+  Screen.displayName = `MyPrescriptionsPage(${status})`;
+  return Screen;
+};
 
 // Single source of truth for path -> page component. Used by the app's
 // router (App.jsx) and by the /flow navigator, so the two can't drift.
@@ -39,20 +60,41 @@ export const PAGES = [
   ['/coupon-enrollment-second-chance', SavingsHipaaAuthorizationPage],
   ['/enrollment-success', EnrollmentSuccessPage],
   ['/create-password', CreatePasswordPage],
+
+  // Prior Authorization
+  ['/pa-sms', PaSmsPage],
+  ['/pa-required', prescriptionsAt('pa-required')],
+  ['/pa-approved-sms', PaApprovedSmsPage],
+  ['/pa-approved', prescriptionsAt('pa-approved')],
+  ['/pa-denied-sms', PaDeniedSmsPage],
+  ['/pa-denied', prescriptionsAt('pa-denied')],
+  ['/finalizing-cost', prescriptionsAt('finalizing-cost')],
+
   ['/checkout-sms', CheckoutSmsPage],
   ['/login', LoginPage],
   ['/confirm-identity', ConfirmIdentityPage],
   ['/otp-delivery', OtpDeliveryPage],
   ['/otp-verify', OtpVerifyPage],
-  ['/my-prescriptions', MyPrescriptionsPage],
+  ['/my-prescriptions', prescriptionsAt('cost-ready')],
   ['/payment-scenarios', PaymentScenariosPage],
   ['/payment', PaymentPage],
   ['/second-chance-enrollment', SecondChanceEnrollmentPage],
   ['/second-chance-consent', SecondChanceConsentPage],
   ['/second-chance-enrolled', SecondChanceEnrolledPage],
   ['/dual-pricing', DualPricingPage],
-  ['/refill-review', RefillReviewPage],
   ['/order-confirmation', OrderConfirmationPage],
+
+  // Shipping & Delivery
+  ['/shipping-sms', ShippingSmsPage],
+  ['/shipped', prescriptionsAt('shipped')],
+  ['/delivery-sms', DeliverySmsPage],
+  ['/delivery-confirmation-required', prescriptionsAt('delivery-confirmation-required')],
+  ['/delivery-confirmation', DeliveryConfirmationPage],
+  ['/delivered', prescriptionsAt('delivered')],
+
+  // Refills
+  ['/refill-sms', RefillSmsPage],
+  ['/refill-review', RefillReviewPage],
 ];
 
 export const PAGE_BY_PATH = Object.fromEntries(PAGES);

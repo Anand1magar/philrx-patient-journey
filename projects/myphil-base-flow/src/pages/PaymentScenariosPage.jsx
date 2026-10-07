@@ -1,8 +1,6 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Button } from '@ds/components/forms/Button/Button.jsx';
-import { PhilRxAppHeader } from '../components/PhilRxAppHeader.jsx';
-import { MyPhilFooter } from '@ds/components/navigation/MyPhilFooter/MyPhilFooter.jsx';
 
 const SCENARIOS = [
   {
@@ -43,36 +41,43 @@ const SCENARIOS = [
   },
 ];
 
+// This is a navigator-only landing page, not a screen a patient ever sees —
+// in the real product, "View your cost" lands on exactly one of these
+// outcomes. It exists so reviewers can jump into any of the equivalent
+// payment-approval scenarios Figma documents. See flowData.js's
+// isLandingPage flag, which tells FlowPreviewPane to render this full-width
+// instead of inside the phone bezel, and drop the patient-app chrome
+// (PhilRxAppHeader / MyPhilFooter) that would otherwise make it look like
+// one of those screens.
 export function PaymentScenariosPage() {
   const navigate = useNavigate();
 
   return (
-    <div style={{ width: '100%', minHeight: '100vh', boxSizing: 'border-box', background: 'var(--paper)', display: 'flex', flexDirection: 'column', alignItems: 'center', fontFamily: 'var(--font-body)' }}>
-      <PhilRxAppHeader active="rx" />
-
-      <div style={{ width: '100%', flex: 1, boxSizing: 'border-box', display: 'flex', flexDirection: 'column', gap: 20, padding: '20px 16px 80px' }}>
+    <div style={{ width: '100%', minHeight: '100vh', boxSizing: 'border-box', background: '#fff', fontFamily: 'var(--font-body)' }}>
+      <div style={{ maxWidth: 880, margin: '0 auto', boxSizing: 'border-box', padding: '48px 40px 64px', display: 'flex', flexDirection: 'column', gap: 28 }}>
         <div style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
-          <h1 style={{ fontSize: 26, fontWeight: 700, lineHeight: '36px', color: 'var(--pitch)', margin: 0 }}>Choose a payment flow</h1>
-          <p style={{ fontSize: 16, lineHeight: '24px', color: 'var(--pitch)', margin: 0 }}>
-            Each option is a different version of the same checkout. Pick one to walk through it end to end.
+          <p style={{ fontSize: 13, fontWeight: 700, letterSpacing: '0.04em', textTransform: 'uppercase', color: 'var(--gunmetal)', margin: 0 }}>Flow navigator — review tool</p>
+          <h1 style={{ fontSize: 28, fontWeight: 700, lineHeight: '36px', color: 'var(--pitch)', margin: 0 }}>Payment approval scenarios</h1>
+          <p style={{ fontSize: 16, lineHeight: '24px', color: 'var(--gunmetal)', margin: 0, maxWidth: 640 }}>
+            Not a screen a patient ever sees. In the real product, "View your cost" lands on exactly one outcome — this page lets you pick which one to preview below.
           </p>
         </div>
 
-        {SCENARIOS.map((scenario) => (
-          <div
-            key={scenario.id}
-            style={{ width: '100%', boxSizing: 'border-box', background: '#fff', border: '1px solid var(--fade)', borderRadius: 4, padding: 16, display: 'flex', flexDirection: 'column', gap: 16 }}
-          >
-            <div style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
-              <p style={{ fontSize: 16, fontWeight: 700, color: 'var(--pitch)', margin: 0 }}>{scenario.name}</p>
-              <p style={{ fontSize: 14, lineHeight: '20px', color: 'var(--gunmetal)', margin: 0 }}>{scenario.description}</p>
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: 16 }}>
+          {SCENARIOS.map((scenario) => (
+            <div
+              key={scenario.id}
+              style={{ boxSizing: 'border-box', background: 'var(--paper)', border: '1px solid var(--fade)', borderRadius: 8, padding: 20, display: 'flex', flexDirection: 'column', gap: 16 }}
+            >
+              <div style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
+                <p style={{ fontSize: 16, fontWeight: 700, color: 'var(--pitch)', margin: 0 }}>{scenario.name}</p>
+                <p style={{ fontSize: 14, lineHeight: '20px', color: 'var(--gunmetal)', margin: 0 }}>{scenario.description}</p>
+              </div>
+              <Button hierarchy="primary" fullWidth onClick={() => navigate(scenario.route)}>Preview this scenario</Button>
             </div>
-            <Button hierarchy="primary" fullWidth onClick={() => navigate(scenario.route)}>View this flow</Button>
-          </div>
-        ))}
+          ))}
+        </div>
       </div>
-
-      <MyPhilFooter insuranceNote />
     </div>
   );
 }

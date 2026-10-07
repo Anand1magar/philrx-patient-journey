@@ -47,7 +47,7 @@ export function CreatePasswordPage() {
         <Checkbox checked={showPassword} onChange={() => setShowPassword((v) => !v)} label="Show Password" />
 
         <div style={{ display: 'flex', flexDirection: 'column', gap: 16 }}>
-          <Button hierarchy="primary" fullWidth onClick={() => navigate('/checkout-sms')}>Confirm</Button>
+          <Button hierarchy="primary" fullWidth onClick={() => navigate('/pa-sms')}>Confirm</Button>
           <p style={{ fontSize: 16, lineHeight: '24px', color: 'var(--gunmetal)', margin: 0 }}>
             By proceeding, you agree to our{' '}
             <a href="#" style={{ color: 'var(--gunmetal)' }}>terms of use</a>,{' '}

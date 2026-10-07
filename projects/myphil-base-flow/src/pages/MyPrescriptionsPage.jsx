@@ -4,22 +4,17 @@ import { Button } from '@ds/components/forms/Button/Button.jsx';
 import { Icon } from '@ds/assets/icons/Icon.jsx';
 import { PhilRxAppHeader } from '../components/PhilRxAppHeader.jsx';
 import { MyPhilFooter } from '@ds/components/navigation/MyPhilFooter/MyPhilFooter.jsx';
-
-const FAQ_QUESTIONS = [
-  'Why do I have a high copay?',
-  'Why has my cost increased from my last fill?',
-  "Why can't I use some manufacturer offers with government-sponsored insurance?",
-  'What is a Cash Price?',
-  'What is a Copay?',
-  'What is a Deductible?',
-  'Why am I getting a 30-day supply instead of a 90-day supply?',
-];
+import { PRESCRIPTION_STATUSES } from './prescriptionStatuses.js';
 
 const divider = <div style={{ borderTop: '1px solid var(--fade)', width: '100%' }} />;
 
-export function MyPrescriptionsPage() {
+// One screen, seven statuses. Every route that renders this page passes the
+// status key it represents — see prescriptionStatuses.js for the copy and
+// pageRegistry.js for the route -> status mapping.
+export function MyPrescriptionsPage({ status = 'cost-ready' }) {
   const navigate = useNavigate();
   const [openQuestion, setOpenQuestion] = useState(null);
+  const config = PRESCRIPTION_STATUSES[status];
 
   return (
     <div style={{ width: '100%', minHeight: '100vh', boxSizing: 'border-box', background: 'var(--paper)', display: 'flex', flexDirection: 'column', alignItems: 'center', fontFamily: 'var(--font-body)' }}>
@@ -38,26 +33,39 @@ export function MyPrescriptionsPage() {
 
           <div style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
             <p style={{ fontSize: 14, color: 'var(--pitch)', margin: 0 }}>Status as of XX/XX/XX:</p>
-            <p style={{ fontSize: 16, fontWeight: 700, color: 'var(--foliage)', margin: 0 }}>Your prescription cost is ready to view</p>
-            {divider}
-            <p style={{ fontSize: 14, fontStyle: 'italic', color: 'var(--pitch)', margin: 0 }}>
-              Your payment won&rsquo;t be charged until you approve your prescription cost.
-            </p>
+            <p style={{ fontSize: 16, fontWeight: 700, color: 'var(--foliage)', margin: 0 }}>{config.headline}</p>
+
+            {config.paragraphs.map((text) => (
+              <p key={text} style={{ fontSize: 14, lineHeight: '20px', color: 'var(--pitch)', margin: 0 }}>{text}</p>
+            ))}
+
+            {config.dividerBeforeNotes && config.notes.length > 0 && divider}
+
+            {config.notes.map((text) => (
+              <p key={text} style={{ fontSize: 14, lineHeight: '20px', fontStyle: 'italic', color: 'var(--pitch)', margin: 0 }}>{text}</p>
+            ))}
           </div>
 
           {divider}
 
           <div style={{ display: 'flex', flexDirection: 'column', gap: 16, width: '100%' }}>
-            <Button hierarchy="primary" fullWidth onClick={() => navigate('/payment-scenarios')}>View your cost</Button>
-            <Button hierarchy="secondary" fullWidth onClick={() => navigate('/refill-review')}>Refill</Button>
-            <Button hierarchy="secondary" fullWidth>Manage your prescription</Button>
+            {config.actions.map((action) => (
+              <Button
+                key={action.label}
+                hierarchy={action.hierarchy}
+                fullWidth
+                onClick={action.to ? () => navigate(action.to) : undefined}
+              >
+                {action.label}
+              </Button>
+            ))}
           </div>
         </div>
 
         <div style={{ width: '100%', boxSizing: 'border-box', background: '#fff', border: '1px solid var(--fade)', borderRadius: 4, padding: 16, display: 'flex', flexDirection: 'column', gap: 12 }}>
           <p style={{ fontSize: 16, fontWeight: 700, color: 'var(--pitch)', margin: 0 }}>FAQ</p>
           <div style={{ display: 'flex', flexDirection: 'column', width: '100%' }}>
-            {FAQ_QUESTIONS.map((question, index) => {
+            {config.faq.map((question, index) => {
               const isOpen = openQuestion === index;
               return (
                 <div
@@ -95,6 +103,9 @@ export function MyPrescriptionsPage() {
               );
             })}
           </div>
+          {config.faqSeeMore && (
+            <a href="#" onClick={(e) => e.preventDefault()} style={{ fontSize: 14, color: 'var(--text-link)', alignSelf: 'flex-start' }}>See more</a>
+          )}
         </div>
       </div>
 
