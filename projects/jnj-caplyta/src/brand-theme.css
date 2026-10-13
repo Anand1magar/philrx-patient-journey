@@ -1,0 +1,28 @@
+/* J&J CAPLYTA white-label theme overrides.
+   Loaded after @ds/styles.css in main.jsx, so these :root values win over the
+   PhilRx design-system defaults. Only the brand-owned tokens are overridden —
+   neutrals, semantics and typography stay on base defaults per the brand spec.
+
+   The hover / disabled / tint shades were specified as "auto": derived from the
+   primary by mixing toward white at roughly +20%, +60% and +95%. */
+:root {
+  /* Primary / CTA / accent (the --sky family the design system consumes) */
+  --sky: #00587D;
+  --sky-hover: #336F91;
+  --sky-disabled: #99B5C4;
+  --sky-tint: #F2F6F8;
+
+  /* Semantic aliases that point at the primary */
+  --brand-primary: #00587D;
+  --brand-primary-hover: #336F91;
+  --brand-primary-disabled: #99B5C4;
+  --text-link: #00587D;
+  --border-focus: #00587D;
+
+  /* Secondary brand color */
+  --secondary: #B587B8;
+  --brand-accent: #B587B8;
+
+  /* Header tagline — same as the primary for this brand. */
+  --header-tagline: #00587D;
+}
