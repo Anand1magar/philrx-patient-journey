@@ -3,12 +3,16 @@ import { useNavigate } from 'react-router-dom';
 import { Button } from '@ds/components/forms/Button/Button.jsx';
 import { PhilRxAppHeader } from '../components/PhilRxAppHeader.jsx';
 import { MyPhilFooter } from '@ds/components/navigation/MyPhilFooter/MyPhilFooter.jsx';
+import { useAuthNext } from '../authNext.js';
 
 const CODE_LENGTH = 6;
 const BORDER_COLOR = { default: 'var(--pitch)', focused: 'var(--sky)', filled: 'var(--pitch)' };
 
 export function OtpVerifyPage() {
   const navigate = useNavigate();
+  // Last screen in the log-in chain, so this is the one that consumes ?next=
+  // and decides where the chain lands — see authNext.js.
+  const { destination } = useAuthNext();
   const [digits, setDigits] = useState(Array(CODE_LENGTH).fill(''));
   const [focusedIndex, setFocusedIndex] = useState(null);
   const inputRefs = useRef([]);
@@ -32,7 +36,7 @@ export function OtpVerifyPage() {
   };
 
   const handleConfirm = () => {
-    navigate('/payment-scenarios');
+    navigate(destination);
   };
 
   return (
@@ -43,10 +47,10 @@ export function OtpVerifyPage() {
         <div style={{ display: 'flex', flexDirection: 'column', gap: 16 }}>
           <h1 style={{ fontSize: 26, fontWeight: 700, lineHeight: '36px', color: 'var(--pitch)', margin: 0 }}>Enter Verification Code</h1>
           <p style={{ fontSize: 16, lineHeight: '24px', color: 'var(--pitch)', margin: 0 }}>
-            We&rsquo;ve sent a one-time code to your email address at ****isa@gmail.com. Enter the code below to verify.
+            We&rsquo;ve sent a one-time code by text message to (***)***-1301. Enter the code below to verify.
           </p>
           <p style={{ fontSize: 16, lineHeight: '24px', color: 'var(--pitch)', margin: 0 }}>
-            If you don&rsquo;t see the email, check your spam or junk folder. The code expires in 15 minutes.
+            If you don&rsquo;t see it, check that your phone can receive messages from short codes. The code expires in 15 minutes.
           </p>
         </div>
 

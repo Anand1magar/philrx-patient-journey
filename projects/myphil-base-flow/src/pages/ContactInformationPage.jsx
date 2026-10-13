@@ -44,7 +44,9 @@ function NoteField({ value, onChange }) {
 
 export function ContactInformationPage() {
   const navigate = useNavigate();
-  const [notifyByText, setNotifyByText] = useState(false);
+  // Text is the recommended channel, so it starts checked. Email stays off —
+  // ticking it also reveals the email TextInput below.
+  const [notifyByText, setNotifyByText] = useState(true);
   const [notifyByEmail, setNotifyByEmail] = useState(false);
   const [email, setEmail] = useState('');
   const [noKnownAllergies, setNoKnownAllergies] = useState(true);

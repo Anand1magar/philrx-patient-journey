@@ -21,7 +21,10 @@ export function RefillSmsPage() {
       </p>
       <p style={{ ...body, margin: '8px 0 0' }}>
         Keep the streak alive! Review and complete your order below:{' '}
-        <a href="#" onClick={(e) => { e.preventDefault(); navigate('/refill-review'); }} style={{ color: '#2363c3', textDecoration: 'none' }}>
+        {/* Through the log-in chain, not straight to the review: a returning
+            patient has to authenticate first. ?next=refill brings them back
+            here rather than to payment approval — see authNext.js. */}
+        <a href="#" onClick={(e) => { e.preventDefault(); navigate('/login?next=refill'); }} style={{ color: '#2363c3', textDecoration: 'none' }}>
           https://philrx.com/refill/Yu2YquwuVw
         </a>
       </p>

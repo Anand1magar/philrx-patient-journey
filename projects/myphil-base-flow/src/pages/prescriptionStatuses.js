@@ -85,9 +85,11 @@ export const PRESCRIPTION_STATUSES = {
     paragraphs: [],
     notes: ['Your payment won’t be charged until you approve your prescription cost.'],
     dividerBeforeNotes: true,
+    // No "Refill" action here: refills sit at the end of the journey, reached
+    // from the refill SMS after delivery, not as a mid-journey shortcut out of
+    // payment approval.
     actions: [
       { label: 'View your cost', hierarchy: 'primary', to: '/payment-scenarios' },
-      { label: 'Refill', hierarchy: 'secondary', to: '/refill-review' },
       { label: 'Manage your prescription', hierarchy: 'secondary' },
     ],
     faq: FAQ_FULL,

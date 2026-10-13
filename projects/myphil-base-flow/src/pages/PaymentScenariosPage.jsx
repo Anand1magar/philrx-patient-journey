@@ -33,12 +33,6 @@ const SCENARIOS = [
     route: '/dual-pricing?combined=1',
     description: 'Dual pricing where choosing the manufacturer offer expands the order summary to hold the consent checkboxes and signature inline.',
   },
-  {
-    id: 'refills',
-    name: 'Refills',
-    route: '/refill-review',
-    description: 'A returning patient reviews and confirms a refill on one screen, using the card already on file.',
-  },
 ];
 
 // This is a navigator-only landing page, not a screen a patient ever sees —

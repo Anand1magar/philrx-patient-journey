@@ -303,10 +303,15 @@ export const FLOW_STAGES = [
       {
         path: '/login',
         title: 'Login',
-        trigger: 'The patient opens the login screen (reached from the payment link).',
-        action: 'The patient logs in with email and password, or chooses to verify with a one-time code instead.',
-        leadsTo: [{ path: '/confirm-identity', label: '"Log In"' }],
-        conditions: [],
+        trigger: 'The patient opens the login screen (reached from the payment link, or from the refill link after delivery).',
+        action: 'The patient logs in with email and password, or chooses to verify with a one-time code instead. Either way the log-in finishes on the one-time code — a password alone never completes it.',
+        leadsTo: [
+          { path: '/confirm-identity', label: '"Log In"' },
+          { path: '/otp-delivery', label: '"Log in with one-time code" — skips the identity step' },
+        ],
+        conditions: [
+          { summary: 'Arrived from the refill SMS', detail: 'The link carries ?next=refill, which every screen in the chain forwards and only /otp-verify consumes, so verifying returns to Refill review instead of payment approval.' },
+        ],
       },
       {
         path: '/confirm-identity',
@@ -328,8 +333,11 @@ export const FLOW_STAGES = [
         path: '/otp-verify',
         title: 'OTP verification',
         trigger: 'The patient receives the verification code.',
-        action: 'The patient enters the code to log into their profile.',
-        leadsTo: [{ path: '/my-prescriptions', label: 'Code verified' }],
+        action: 'The patient enters the code to log into their profile. This is the screen that consumes ?next= and decides where the chain lands.',
+        leadsTo: [
+          { path: '/payment-scenarios', label: 'Code verified — arrived from the checkout SMS' },
+          { path: '/refill-review', label: 'Code verified — arrived from the refill SMS (?next=refill)' },
+        ],
         conditions: [],
       },
     ],
@@ -354,7 +362,6 @@ export const FLOW_STAGES = [
         action: 'The patient lands on their MyPhil profile and sees their prescription status with a "View your costs" button. Tapping it takes them straight to checkout, showing the finalized cost, payment, and price details.',
         leadsTo: [
           { path: '/payment-scenarios', label: '"View your cost"' },
-          { path: '/refill-review', label: '"Refill"' },
         ],
         conditions: [
           { summary: 'One layout, many statuses', detail: 'This is MyPrescriptionsPage at its "cost ready" status. The same component renders the PA, finalizing-cost, shipped, delivery-confirmation and delivered screens too — each at its own route, with copy from prescriptionStatuses.js.' },
@@ -371,7 +378,6 @@ export const FLOW_STAGES = [
           { path: '/second-chance-enrollment?combined=1', label: '"Second chance enrollment — banner (combined)"' },
           { path: '/dual-pricing', label: '"Second chance enrollment — dual pricing"' },
           { path: '/dual-pricing?combined=1', label: '"Second chance enrollment — dual pricing (combined)"' },
-          { path: '/refill-review', label: '"Refills"' },
         ],
         conditions: [
           { summary: 'Rendered as a landing page, not inside the phone frame', detail: 'isLandingPage tells FlowPreviewPane to show it full-width in the navigator, signalling that this is a tool for picking a scenario to preview, not something a patient would ever see.' },
@@ -566,15 +572,15 @@ export const FLOW_STAGES = [
         path: '/refill-sms',
         title: 'SMS: Refill ready',
         trigger: 'The refill date arrives, or the price changed since the original fill and needs re-approval.',
-        action: 'PHILRx texts the patient that their refill is ready to review, with a link straight into checkout.',
-        leadsTo: [{ path: '/refill-review', label: 'Patient taps the SMS link' }],
+        action: 'PHILRx texts the patient that their refill is ready to review, with a link into the log-in chain.',
+        leadsTo: [{ path: '/login', label: 'Patient taps the SMS link (carries ?next=refill)' }],
         conditions: [],
         hideStatusBar: true,
       },
       {
         path: '/refill-review',
         title: 'Refill — review and confirm',
-        trigger: 'The patient opens the refill link.',
+        trigger: 'The patient finishes the log-in chain that the refill link started.',
         action: 'Payment approval for the refill, condensed into a single screen: order summary, shipping address, payment method, auto-refill preference, and signature all at once instead of the multi-step original-fill flow.',
         leadsTo: [{ path: '/order-confirmation', label: '"Confirm $XX"' }],
         conditions: [

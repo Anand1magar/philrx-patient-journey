@@ -5,9 +5,13 @@ import { TextInput } from '@ds/components/forms/TextInput/TextInput.jsx';
 import { Checkbox } from '@ds/components/forms/Checkbox/Checkbox.jsx';
 import { PhilRxAppHeader } from '../components/PhilRxAppHeader.jsx';
 import { MyPhilFooter } from '@ds/components/navigation/MyPhilFooter/MyPhilFooter.jsx';
+import { useAuthNext } from '../authNext.js';
 
 export function LoginPage() {
   const navigate = useNavigate();
+  // ?next=refill when this chain started from the refill SMS; forwarded on so
+  // both routes out of here keep the eventual destination.
+  const { suffix } = useAuthNext();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [showPassword, setShowPassword] = useState(false);
@@ -37,7 +41,7 @@ export function LoginPage() {
         </div>
 
         <div style={{ display: 'flex', flexDirection: 'column', gap: 16 }}>
-          <Button hierarchy="primary" fullWidth onClick={() => navigate('/confirm-identity')}>Log In</Button>
+          <Button hierarchy="primary" fullWidth onClick={() => navigate('/confirm-identity' + suffix)}>Log In</Button>
 
           <div style={{ display: 'flex', alignItems: 'center', gap: 16 }}>
             <div style={{ flex: 1, height: 1, background: 'var(--fade)' }} />
@@ -45,7 +49,10 @@ export function LoginPage() {
             <div style={{ flex: 1, height: 1, background: 'var(--fade)' }} />
           </div>
 
-          <Button hierarchy="secondary" fullWidth>Log in with one-time code</Button>
+          {/* Skips the identity step and goes straight to the code. Either route
+              out of this screen ends at /otp-verify — password alone never
+              completes a log-in. */}
+          <Button hierarchy="secondary" fullWidth onClick={() => navigate('/otp-delivery' + suffix)}>Log in with one-time code</Button>
 
           <p style={{ fontSize: 16, lineHeight: '24px', color: 'var(--gunmetal)', margin: 0 }}>
             By proceeding, you agree to our{' '}
