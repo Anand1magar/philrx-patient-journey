@@ -4,9 +4,12 @@ import { Button } from '@ds/components/forms/Button/Button.jsx';
 import { TextInput } from '@ds/components/forms/TextInput/TextInput.jsx';
 import { PhilRxAppHeader } from '../components/PhilRxAppHeader.jsx';
 import { MyPhilFooter } from '@ds/components/navigation/MyPhilFooter/MyPhilFooter.jsx';
+import { useAuthNext } from '../authNext.js';
 
 export function ConfirmIdentityPage() {
   const navigate = useNavigate();
+  // ?next=refill when this chain started from the refill SMS; forwarded on.
+  const { suffix } = useAuthNext();
   const [lastName, setLastName] = useState('');
   const [dob, setDob] = useState('');
 
@@ -22,7 +25,7 @@ export function ConfirmIdentityPage() {
           <TextInput label="Date of birth (MM/DD/YYYY)" placeholder="MM/DD/YYYY" value={dob} onChange={(e) => setDob(e.target.value)} />
         </div>
 
-        <Button hierarchy="primary" fullWidth onClick={() => navigate('/otp-delivery')}>Confirm</Button>
+        <Button hierarchy="primary" fullWidth onClick={() => navigate('/otp-delivery' + suffix)}>Confirm</Button>
       </div>
 
       <MyPhilFooter />
