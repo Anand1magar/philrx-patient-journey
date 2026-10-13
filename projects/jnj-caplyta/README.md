@@ -1,10 +1,11 @@
 # J&J CAPLYTA
 
-White-label brand built from `../myphil-base-flow`, following the convention in
-`projects/README.md`: a complete standalone copy that shares the design system at
-the repo root (`../../components`, `../../tokens`, `../../assets`) through the
-`@ds` Vite alias. Only brand identity, the screen set, and the payment model
-differ from the base flow.
+White-label brand built from `../myphil-base-flow`. Only brand identity, the
+screen set, the copy tone, and the payment model differ from the base flow.
+
+**This project is self-contained.** Unlike the base flow, it does not reach up to
+a monorepo root for the design system — it carries the slice it uses in `ds/`, so
+the folder can be lifted out, pushed to its own repo, and deployed on its own.
 
 ## Run it
 
@@ -12,6 +13,27 @@ differ from the base flow.
     npm run dev
 
 Opens at `/flow`, the journey navigator. `/` redirects there.
+
+## Ship it as its own repo
+
+The folder is portable as-is — copy it anywhere and `npm install && npm run build`
+works with no monorepo present:
+
+    cp -R projects/jnj-caplyta /path/to/jnj-caplyta
+    cd /path/to/jnj-caplyta
+    rm -rf node_modules dist
+    git init && git add -A && git commit -m "J&J CAPLYTA patient journey"
+    git remote add origin <the new GitHub repo>
+    git push -u origin main
+
+Vercel deploys it with no configuration — `vercel.json` already sets the SPA
+rewrites, and the framework preset is detected from `package.json`.
+
+**The trade-off:** `ds/` is a snapshot. Fixes made to the shared design system in
+the monorepo do not reach this project until someone re-runs
+`node scripts/vendor-ds.mjs` (which only works from inside the monorepo). That is
+deliberate — a client-dedicated repo wants a frozen, reviewable design system
+rather than one that shifts underneath it.
 
 ## What's brand-specific
 
@@ -25,8 +47,28 @@ Opens at `/flow`, the journey navigator. `/` redirects there.
 | Screen set and order | `src/pageRegistry.js` |
 | Navigator stage/screen metadata | `src/flow/flowData.js` |
 
+And two generated folders, both produced by `node scripts/vendor-ds.mjs` and
+**not edited by hand**:
+
+| Folder | What it is |
+|---|---|
+| `ds/` | The slice of the shared design system this brand imports (26 files, ~365 KB). `@ds` resolves here. |
+| `reference/autocomms/` | The copy-tone reference, carried along so a standalone checkout has it |
+
 Primary is `#00587D`; hover / disabled / tint are derived from it. Secondary is
 `#B587B8`. Everything else stays on base defaults.
+
+## Copy tone
+
+SMS copy is written in **V2 — Professional**, per
+`reference/autocomms/README.md`: lead with the fact, no exclamation marks, no
+motivational framing, imperative instructions, compliance footer verbatim.
+
+`/sms` follows message `STD1.1` V2 directly. The other eight SMS screens belong
+to journey stages whose autocomms **have not been supplied yet** (prior
+authorization, payment approval, shipping & delivery, refills) — their copy was
+written to match the professional register, not lifted from an approved source.
+Treat it as provisional until the PM sends those exports.
 
 `src/assets/caplyta-logo.svg` is a **placeholder** wordmark, per the brand spec —
 no real CAPLYTA trademark asset is committed. Swap that one file when the real
@@ -87,9 +129,17 @@ Walks all 36 screens, writes `scripts/out/journey/NN-<name>.png` plus
 `caplyta-journey.webm`, and asserts: no base-brand string survives in visible
 copy or attributes, text notifications and auto-refill default to checked, the
 PAP banner appears on exactly the uninsured and government coverages, the log-in
-chain reaches the one-time code, `?next=refill` returns to the refill review, and
-the sidebar reports journey position. Exits non-zero on any failure or console
-error.
+chain reaches the one-time code, `?next=refill` returns to the refill review, all
+nine SMS screens stay in the professional register (no exclamation marks, no
+motivational phrasing), and the sidebar reports journey position. Exits non-zero
+on any failure or console error.
+
+To confirm the project really is portable:
+
+    cp -R . /tmp/standalone && cd /tmp/standalone
+    rm -rf node_modules dist && npm install && npm run build
+
+It should produce byte-identical bundle hashes to a build run in place.
 
 `scripts/verify-baseline.mjs` and `verify-progress-bar.mjs` carry over from the
 base flow and target its port.

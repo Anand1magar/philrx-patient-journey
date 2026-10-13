@@ -11,9 +11,9 @@ export function DeliverySignatureSmsPage() {
   const navigate = useNavigate();
   return (
     <SmsMessageScreen>
-      <p style={body}>J&J Direct: Delivered!</p>
+      <p style={body}>J&J Direct: Your prescription was delivered.</p>
       <p style={{ ...body, margin: '8px 0 0' }}>
-        One last step — your insurance needs your signature to confirm. Sign here and you&rsquo;re done:{' '}
+        Your insurance company requires your signature to confirm receipt. Sign here:{' '}
         <a href="#" onClick={(e) => { e.preventDefault(); navigate('/delivery-confirmation-required'); }} style={{ color: '#00587D', textDecoration: 'none' }}>
           https://jnjwithme.com/confirm-delivery/Yu2YquwuVw
         </a>

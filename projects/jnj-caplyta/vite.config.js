@@ -4,13 +4,18 @@ import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
-const repoRoot = path.resolve(__dirname, '../..');
+
+// @ds resolves inside this project, not up to a monorepo root: this brand ships
+// to the client as its own repo and deploys separately, so it carries the slice
+// of the design system it uses in ./ds. Regenerate with
+// `node scripts/vendor-ds.mjs` from inside the monorepo.
+const designSystem = path.resolve(__dirname, 'ds');
 
 export default defineConfig({
   plugins: [react()],
   resolve: {
     alias: {
-      '@ds': repoRoot,
+      '@ds': designSystem,
     },
   },
   server: {

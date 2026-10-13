@@ -10,7 +10,7 @@ export function PaApprovedSmsPage() {
   return (
     <SmsMessageScreen>
       <p style={body}>
-        [Prescription Update] Good news! Your insurance company approved the Prior Authorization and is covering your prescription for:
+        [Prescription Update] Your insurance company approved the Prior Authorization and is covering your prescription for:
       </p>
       <p style={{ ...body, margin: '8px 0 0' }}>
         CAPLYTA

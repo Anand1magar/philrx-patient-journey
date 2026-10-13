@@ -1,0 +1,313 @@
+Msg ID,Channel,Description,Original (Current),V1 — Motivational,V2 — Professional,V3 — Friendly
+STD1.2,EMAIL,Order is created for a new PHIL patient.,"Subject: Welcome to PhilRx!
+
+Hi {{.patient_first_name}},<br/><br/> Your prescription from Dr. {{.doctor_first_name}} {{.doctor_last_name}} has been received by PhilRx Pharmacy for:<br/><br/> {{.rx_name}}<br/><br/> Click below to verify your information.","Subject: Your prescription has arrived
+
+PHILRx: Great news, {{.patient_first_name}}!
+
+Dr. {{.doctor_first_name}} {{.doctor_last_name}} sent your prescription to PhilRx Pharmacy:
+
+{{.rx_name}}
+
+Click below to verify your info and get started.","Subject: Prescription received — verify your information
+
+PHILRx: Hi {{.patient_first_name}},
+
+Your prescription from Dr. {{.doctor_first_name}} {{.doctor_last_name}} has been received by PhilRx Pharmacy for:
+
+{{.rx_name}}
+
+Click below to verify your information.","Subject: Your prescription is here
+
+PHILRx: Hi {{.patient_first_name}},
+
+We received your prescription from Dr. {{.doctor_first_name}} {{.doctor_last_name}} for:
+
+{{.rx_name}}
+
+Just click below to verify your info — we'll handle the rest."
+STD1.1,SMS,Order is created for a new PHIL patient.,"Your prescription from Dr. {{.doctor_first_name}} {{.doctor_last_name}} has been received by PhilRx Pharmacy for:
+- {{.rx_name}}
+
+Click here to verify your information: {{.signup_link}}
+
+Note: Reply HELP for help or STOP to unsubscribe. About 4msgs/month. Msg&Data rates may apply","PHILRx: Great news! Dr. {{.doctor_first_name}} {{.doctor_last_name}} sent your prescription for:
+- {{.rx_name}}
+
+Verify your info to get started: {{.signup_link}}
+
+Note: Reply HELP for help or STOP to unsubscribe. About 4msgs/month. Msg&Data rates may apply","PHILRx: Your prescription from Dr. {{.doctor_first_name}} {{.doctor_last_name}} has been received for:
+- {{.rx_name}}
+
+Verify your information here: {{.signup_link}}
+
+Note: Reply HELP for help or STOP to unsubscribe. About 4msgs/month. Msg&Data rates may apply","PHILRx: Hi! We received your prescription from Dr. {{.doctor_first_name}} {{.doctor_last_name}} for:
+- {{.rx_name}}
+
+Just verify your info here: {{.signup_link}}
+
+Note: Reply HELP for help or STOP to unsubscribe. About 4msgs/month. Msg&Data rates may apply"
+STD1,SMS,Order is created for a new PHIL patient older than 40.,"Your prescription from Dr. {{.doctor_first_name}} {{.doctor_last_name}} has been received by PhilRx Pharmacy for:
+- {{.rx_name}}
+
+Click here to verify your information: {{.signup_link}}
+
+Need help by phone? Text back CALL and we'll call you.
+
+Note: Reply HELP for help or STOP to unsubscribe. About 4msgs/month. Msg&Data rates may apply","PHILRx: Great news! Dr. {{.doctor_first_name}} {{.doctor_last_name}} sent your prescription for:
+- {{.rx_name}}
+
+Verify your info to get started: {{.signup_link}}
+
+Prefer a call? Reply CALL.
+
+Note: Reply HELP for help or STOP to unsubscribe. About 4msgs/month. Msg&Data rates may apply","PHILRx: Your prescription from Dr. {{.doctor_first_name}} {{.doctor_last_name}} has been received for:
+- {{.rx_name}}
+
+Verify your information here: {{.signup_link}}
+
+To receive a call, reply CALL.
+
+Note: Reply HELP for help or STOP to unsubscribe. About 4msgs/month. Msg&Data rates may apply","PHILRx: Hi! We received your prescription from Dr. {{.doctor_first_name}} {{.doctor_last_name}} for:
+- {{.rx_name}}
+
+Just verify your info here: {{.signup_link}}
+
+Want us to call you? Reply CALL.
+
+Note: Reply HELP for help or STOP to unsubscribe. About 4msgs/month. Msg&Data rates may apply"
+STD10,SMS,Order is created for an existing PHIL patient.,"Hi {{.patient_first_name}}: We received your prescription from Dr. {{.doctor_first_name}} {{.doctor_last_name}} and will start processing for:
+- {{.rx_name}}
+
+Visit your MyPhil account for updates: {{.patient_portal_link}}","PHILRx: Great news, {{.patient_first_name}}! Dr. {{.doctor_first_name}} {{.doctor_last_name}} sent a new prescription for:
+- {{.rx_name}}
+
+We're on it. Updates: {{.patient_portal_link}}","PHILRx: Hi {{.patient_first_name}}, a new prescription from Dr. {{.doctor_first_name}} {{.doctor_last_name}} has been received for:
+- {{.rx_name}}
+
+Processing has begun. Updates: {{.patient_portal_link}}","PHILRx: Hi {{.patient_first_name}}, we received a new prescription from Dr. {{.doctor_first_name}} {{.doctor_last_name}} for:
+- {{.rx_name}}
+
+We're processing it now. Updates: {{.patient_portal_link}}"
+STD2.1,EMAIL,If PT didn't complete registration after sending Signup SMS ,"Subject: Get started with PhilRx to receive your prescription
+
+Hi {{.patient_first_name}},<br/><br/> Your prescription from Dr. {{.doctor_first_name}} {{.doctor_last_name}} has been received by PhilRx Pharmacy for:<br/><br/> {{.rx_name}}<br/><br/> Click below to verify your information.","Subject: Your prescription is waiting
+
+PHILRx: {{.patient_first_name}}, your prescription is waiting!
+
+Dr. {{.doctor_first_name}} {{.doctor_last_name}} sent it to PhilRx Pharmacy for:
+
+{{.rx_name}}
+
+Click below to verify your info and keep it moving.","Subject: Reminder: verify your information
+
+PHILRx: Hi {{.patient_first_name}},
+
+Reminder — your prescription from Dr. {{.doctor_first_name}} {{.doctor_last_name}} is waiting at PhilRx Pharmacy for:
+
+{{.rx_name}}
+
+Click below to verify your information.","Subject: Quick reminder about your prescription
+
+PHILRx: Hi {{.patient_first_name}},
+
+Just a reminder — your prescription from Dr. {{.doctor_first_name}} {{.doctor_last_name}} is here for:
+
+{{.rx_name}}
+
+Click below to verify your info whenever you're ready."
+STD2.1,SMS,If PT didn't complete registration after sending Signup SMS,"Your prescription from Dr. {{.doctor_first_name}} {{.doctor_last_name}} has been received by PhilRx Pharmacy for:
+- {{.rx_name}}
+
+Click here to verify your information: {{.signup_link}}
+
+{{.spanish_help_message}}
+
+Note: Reply HELP for help or STOP to unsubscribe. About 4msgs/month. Msg&Data rates may apply","PHILRx: Your prescription from Dr. {{.doctor_first_name}} {{.doctor_last_name}} is waiting for:
+- {{.rx_name}}
+
+Verify your info to get started: {{.signup_link}}
+
+{{.spanish_help_message}}
+
+Note: Reply HELP for help or STOP to unsubscribe. About 4msgs/month. Msg&Data rates may apply","PHILRx: Reminder — your prescription from Dr. {{.doctor_first_name}} {{.doctor_last_name}} is waiting for:
+- {{.rx_name}}
+
+Verify your information here: {{.signup_link}}
+
+{{.spanish_help_message}}
+
+Note: Reply HELP for help or STOP to unsubscribe. About 4msgs/month. Msg&Data rates may apply","PHILRx: Just a reminder — your prescription from Dr. {{.doctor_first_name}} {{.doctor_last_name}} is here for:
+- {{.rx_name}}
+
+Verify your info here: {{.signup_link}}
+
+{{.spanish_help_message}}
+
+Note: Reply HELP for help or STOP to unsubscribe. About 4msgs/month. Msg&Data rates may apply"
+STD3.1,SMS,If PT didn't complete registration after sending 'Signup reminder',"Your prescription is ready at PhilRx for:
+- {{.rx_name}}
+
+To receive it, please verify your information: {{.signup_link}}
+
+Note: Reply HELP for help or STOP to unsubscribe. About 4msgs/month. Msg&Data rates may apply","PHILRx: Your prescription is waiting for:
+- {{.rx_name}}
+
+Verify your info to claim it: {{.signup_link}}
+
+Note: Reply HELP for help or STOP to unsubscribe. About 4msgs/month. Msg&Data rates may apply","PHILRx: Reminder — your prescription is waiting for:
+- {{.rx_name}}
+
+Verify your information here: {{.signup_link}}
+
+Note: Reply HELP for help or STOP to unsubscribe. About 4msgs/month. Msg&Data rates may apply","PHILRx: Friendly reminder — your prescription is waiting for:
+- {{.rx_name}}
+
+Verify your info here: {{.signup_link}}
+
+Note: Reply HELP for help or STOP to unsubscribe. About 4msgs/month. Msg&Data rates may apply"
+STD4.1,SMS,If PT didn't complete registration after sending 'Signup Second Reminder',"Your prescription is ready at PhilRx and will be held for 1 more day for:
+- {{.rx_name}}
+
+To receive it, please verify your information: {{.signup_link}}
+
+Note: Reply HELP for help or STOP to unsubscribe. About 4msgs/month. Msg&Data rates may apply","PHILRx: Don't miss it! We'll hold your prescription 1 more day:
+- {{.rx_name}}
+
+Verify your info now: {{.signup_link}}
+
+Note: Reply HELP for help or STOP to unsubscribe. About 4msgs/month. Msg&Data rates may apply","PHILRx: Your prescription will be held 1 more day:
+- {{.rx_name}}
+
+Verify your information here: {{.signup_link}}
+
+Note: Reply HELP for help or STOP to unsubscribe. About 4msgs/month. Msg&Data rates may apply","PHILRx: Heads up — we can hold your prescription 1 more day:
+- {{.rx_name}}
+
+Verify your info here: {{.signup_link}}
+
+Note: Reply HELP for help or STOP to unsubscribe. About 4msgs/month. Msg&Data rates may apply"
+STD5.1,SMS,If PT didn't complete registration after sending 'Signup third Reminder',"This is the final attempt for your prescription at PhilRx:
+- {{.rx_name}}
+
+To receive it, please verify your information today: {{.signup_link}}
+
+Note: Reply HELP for help or STOP to unsubscribe. About 4msgs/month. Msg&Data rates may apply","PHILRx: Last call! Final reminder for your prescription:
+- {{.rx_name}}
+
+Verify your info today: {{.signup_link}}
+
+Note: Reply HELP for help or STOP to unsubscribe. About 4msgs/month. Msg&Data rates may apply","PHILRx: Final reminder — your prescription is waiting:
+- {{.rx_name}}
+
+Verify your information today: {{.signup_link}}
+
+Note: Reply HELP for help or STOP to unsubscribe. About 4msgs/month. Msg&Data rates may apply","PHILRx: Last reminder — we'd hate for you to miss your prescription:
+- {{.rx_name}}
+
+Verify your info today: {{.signup_link}}
+
+Note: Reply HELP for help or STOP to unsubscribe. About 4msgs/month. Msg&Data rates may apply"
+STD11,EMAIL,Signup complete,"Subject: Welcome to PhilRx!
+
+Hi {{.patient_first_name}},<br/>Thanks for creating your MyPhil account. With your MyPhil account created, here's what you can expect next:<ul><li>We'll be reviewing your prescription and will start processing soon. We'll be in touch if we need anything from you.</li><li>We'll let you know once your prescription cost is ready for you to view. You won't be charged for payment until you review and approve your cost.</li><li>After you approve your prescription cost, we'll get your prescription ready to be shipped and delivered to you!</li></ul><br/>You can check for updates anytime by visiting your MyPhil account.<br/><br/>If you have questions, <a href={{.zendesk_contact_us_link}} target='_blank' class='primary-color'>let us know</a>!","Subject: You're in! Here's what's next
+
+PHILRx: Welcome, {{.patient_first_name}} — your MyPhil account is ready!
+What's next:- We review and process your prescription.
+- You review and approve your cost. No charge until you do.
+- We ship it to your door.
+Questions? We're here!","Subject: Account created — next steps
+
+PHILRx: Hi {{.patient_first_name}},
+Your MyPhil account has been created.
+Next steps:- Your prescription will be reviewed and processed.
+- You will review and approve your cost. No charge is made until then.
+- Your prescription will be shipped to you.
+Questions? Contact us.","Subject: Welcome — here's what to expect
+
+PHILRx: Hi {{.patient_first_name}},
+Your MyPhil account is all set.
+Here's what to expect:- We review and process your prescription.
+- You review and approve your cost — no charge until you do.
+- We ship it right to you.
+Questions? Just ask!"
+NEW-1,EMAIL,PROPOSED — sent when the patient completes enrollment,(No current autocomm — proposed new message),"Subject: You're in — enrollment complete!
+
+PHILRx: Hi {{.patient_first_name}},
+
+You did it — your enrollment is complete! Here's what's next:- We're processing your prescription now.
+- We'll tell you the moment your cost is ready — you won't be charged until you approve it.
+- Once you approve, we ship it straight to your door!
+Track it all in your MyPhil account.","Subject: Enrollment complete — what happens next
+
+PHILRx: Hi {{.patient_first_name}},
+
+Your enrollment is complete. Your prescription is now being processed. We'll notify you when your cost is ready for review, and you won't be charged until you approve it. Once approved, your prescription will ship to your address.
+
+Updates are available in your MyPhil account.","Subject: You're all set — enrollment complete
+
+PHILRx: Hi {{.patient_first_name}},
+
+You're all set — your enrollment is complete! We're processing your prescription now, and we'll let you know when your cost is ready. You won't be charged until you approve it. After that, we'll ship it right to you.
+
+Check your MyPhil account anytime for updates."
+NEW-1,SMS,PROPOSED — sent when the patient completes enrollment,(No current autocomm — proposed new message),"PHILRx: You're officially enrolled, {{.patient_first_name}} — welcome! We're processing your prescription now. We'll tell you when your cost is ready, and you won't be charged until you approve it. Updates: {{.patient_portal_link}}","PHILRx: Hi {{.patient_first_name}}, your enrollment is complete. Your prescription is now being processed. We'll notify you when your cost is ready for review — you won't be charged until you approve it. Updates: {{.patient_portal_link}}","PHILRx: Hi {{.patient_first_name}}, you're all set — enrollment complete! We're processing your prescription and will let you know when your cost is ready. You won't be charged until you approve it. Updates: {{.patient_portal_link}}"
+STD158,EMAIL,Coupon or waiver enrollment to reduce copay,"Subject: PhilRx Update: Copay cost
+
+Hi {{.patient_first_name}},<br/><br/> We ran your insurance and unfortunately, your prescription has a high copay. However, there is a discount offer available to help lower your cost. You can view and opt into the discount offer to save on your prescription on your MyPhil account <a href='{{.coupon_enrollment_url}}'>{{.coupon_enrollment_url}}</a>.<br/><br/>If you have additional questions, please <a href='{{.zendesk_contact_us_link}}' target='_blank'>contact us</a>.<br/><br/>Best,<br/>PhilRx","Subject: A discount may lower your cost
+
+PHILRx: Good news, {{.patient_first_name}} — a discount offer may lower your high copay.
+
+Opt in here: {{.coupon_enrollment_url}}
+
+Questions? We've got you.","Subject: Your copay is high — a discount offer is available
+
+PHILRx: Hi {{.patient_first_name}},
+
+Your copay came back high. A discount offer may lower your cost.
+
+Opt in here: {{.coupon_enrollment_url}}
+
+Questions? Contact us.","Subject: A discount offer may help with your copay
+
+PHILRx: Hi {{.patient_first_name}},
+
+Your copay came back high — but a discount offer may lower your cost.
+
+Opt in here: {{.coupon_enrollment_url}}
+
+Questions? We're happy to help."
+STD158,SMS,Coupon or waiver enrollment to reduce copay,"[PhilRx Update] We ran your insurance and your prescription has a high copay. However, there's a discount offer available to help lower your cost. You can opt in to the offer on your MyPhil account {{.coupon_enrollment_url}}.
+
+ If you have any questions, contact us here: {{.zendesk_contact_us_link}}","PHILRx: Good news — a discount offer may lower your high copay. Opt in: {{.coupon_enrollment_url}}
+
+Questions? {{.zendesk_contact_us_link}}","PHILRx: Your copay is high. A discount offer may lower your cost. Opt in: {{.coupon_enrollment_url}}
+
+Questions? {{.zendesk_contact_us_link}}","PHILRx: Your copay came back high — a discount offer may help. Opt in: {{.coupon_enrollment_url}}
+
+Questions? {{.zendesk_contact_us_link}}"
+STD158.1,EMAIL,Coupon or waiver enrollment to reduce copay,"Subject: PhilRx Update: Copay cost
+
+Hi {{.patient_first_name}},<br/><br/> We ran your insurance and unfortunately, your prescription has a high copay. However, there is a discount offer available to help lower your cost. You can view and opt into the discount offer to save on your prescription on your MyPhil account <a href='{{.government_waiver_enrollment_url}}'>{{.government_waiver_enrollment_url}}</a>.<br/><br/>If you have additional questions, please <a href='{{.zendesk_contact_us_link}}' target='_blank'>contact us</a>.<br/><br/>Best,<br/>PhilRx","Subject: A discount may lower your cost
+
+PHILRx: Good news, {{.patient_first_name}} — a discount offer may lower your high copay.
+
+Opt in here: {{.government_waiver_enrollment_url}}
+
+Questions? We've got you.","Subject: Your copay is high — a discount offer is available
+
+PHILRx: Hi {{.patient_first_name}},
+
+Your copay came back high. A discount offer may lower your cost.
+
+Opt in here: {{.government_waiver_enrollment_url}}
+
+Questions? Contact us.","Subject: A discount offer may help with your copay
+
+PHILRx: Hi {{.patient_first_name}},
+
+Your copay came back high — but a discount offer may lower your cost.
+
+Opt in here: {{.government_waiver_enrollment_url}}
+
+Questions? We're happy to help."

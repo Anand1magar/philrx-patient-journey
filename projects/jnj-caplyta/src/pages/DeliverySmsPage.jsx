@@ -11,10 +11,10 @@ export function DeliverySmsPage() {
     <SmsMessageScreen>
       <p style={body}>
         J&J Direct:
-        {'\n'}Hi [First name],
+        {'\n'}Hi Patricia,
       </p>
       <p style={{ ...body, margin: '8px 0 0' }}>
-        It&rsquo;s here! Your prescription was delivered on [delivered date]. Questions? We&rsquo;re one click away{' '}
+        Your prescription was delivered on [delivered date]. Questions? Contact us{' '}
         <a href="#" onClick={(e) => { e.preventDefault(); navigate('/delivered'); }} style={{ color: '#00587D', textDecoration: 'underline' }}>
           here
         </a>.

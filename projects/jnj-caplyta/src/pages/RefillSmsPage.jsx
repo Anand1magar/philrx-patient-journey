@@ -11,16 +11,16 @@ export function RefillSmsPage() {
     <SmsMessageScreen>
       <p style={body}>
         J&J Direct:
-        {'\n'}Hi [First name],
+        {'\n'}Hi Patricia,
       </p>
       <p style={{ ...body, margin: '8px 0 0' }}>
-        It&rsquo;s here — your refill is ready for:
+        Your refill is ready for:
       </p>
       <p style={{ ...body, margin: '8px 0 0' }}>
         CAPLYTA
       </p>
       <p style={{ ...body, margin: '8px 0 0' }}>
-        Keep the streak alive! Review and complete your order below:{' '}
+        Review and complete your order here:{' '}
         {/* Through the log-in chain, not straight to the review: a returning
             patient has to authenticate first. ?next=refill brings them back
             here rather than to payment approval — see authNext.js. */}

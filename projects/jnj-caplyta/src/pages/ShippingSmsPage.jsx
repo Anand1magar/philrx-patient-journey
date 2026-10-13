@@ -10,11 +10,11 @@ export function ShippingSmsPage() {
   return (
     <SmsMessageScreen>
       <p style={body}>
-        J&J Direct: It&rsquo;s on the way! Your prescription just shipped:
+        J&J Direct: Your prescription has shipped:
         {'\n'}- CAPLYTA
       </p>
       <p style={{ ...body, margin: '8px 0 0' }}>
-        Follow along here:{' '}
+        Track your delivery here:{' '}
         <a href="#" onClick={(e) => { e.preventDefault(); navigate('/shipped'); }} style={{ color: '#00587D', textDecoration: 'none' }}>
           https://jnjwithme.com/track/Yu2YquwuVw
         </a>

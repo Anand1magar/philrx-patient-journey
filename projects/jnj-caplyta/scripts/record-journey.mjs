@@ -152,6 +152,21 @@ await page.getByRole('button', { name: 'Confirm', exact: true }).click();
 await page.waitForURL('**/refill-review');
 if (!page.url().endsWith('/refill-review')) failures.push('?next=refill did not land on /refill-review');
 
+// SMS copy stays in the V2 Professional register (reference/autocomms/README.md):
+// no exclamation marks, no motivational framing.
+const SMS_SCREENS = JOURNEY.filter(([name]) => name === 'sms' || name.endsWith('-sms'));
+const V1_TELLS = ['Good news', 'Great news', 'Keep the streak', "Don't miss", 'Last call', 'You did it'];
+for (const [, path] of SMS_SCREENS) {
+  await page.goto(BASE + path, { waitUntil: 'networkidle' });
+  const body = await page.evaluate(() => document.body.innerText);
+  // The compliance footer and the iOS chrome carry no "!"; any exclamation mark
+  // in an SMS bubble means motivational copy crept back in.
+  if (body.includes('!')) failures.push(`${path}: SMS copy contains "!" — V2 Professional takes no exclamation marks`);
+  for (const tell of V1_TELLS) {
+    if (body.includes(tell)) failures.push(`${path}: SMS copy contains motivational phrasing "${tell}"`);
+  }
+}
+
 // The journey side panel reports position.
 await page.goto(BASE + '/flow/welcome', { waitUntil: 'networkidle' });
 await page.waitForTimeout(400);
